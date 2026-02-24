@@ -10,6 +10,10 @@ import (
 )
 
 func main() {
+	saveEventsToFile()
+}
+
+func saveEventsToFile() {
 	conn, err := net.Dial("tcp", "127.0.0.1:5038")
 	if err != nil {
 		log.Fatal(err)
