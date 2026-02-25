@@ -18,6 +18,8 @@ coverage.*
 profile.cov
 
 bin/
+asterisk-cdr.log
+*.log
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
