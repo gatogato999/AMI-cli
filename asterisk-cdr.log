@@ -1,0 +1,22 @@
+Event: Cdr
+Privilege: cdr,all
+AccountCode: 
+Source: 6001
+Destination: 111
+DestinationContext: from-internal
+CallerID: "android" <6001>
+Channel: PJSIP/6001-00000001
+DestinationChannel: 
+LastApplication: Hangup
+LastData: 
+StartTime: 2026-02-25 09:01:18
+AnswerTime: 2026-02-25 09:01:18
+EndTime: 2026-02-25 09:01:21
+Duration: 2
+BillableSeconds: 2
+Disposition: ANSWERED
+AMAFlags: DOCUMENTATION
+UniqueID: 1772002878.2
+UserField: 
+
+

@@ -27,18 +27,20 @@ func saveEventsToFile() {
 
 	defer client.Close()
 
-	file, err := os.Create("asterisk-events.log")
+	file, err := os.Create("asterisk-cdr.log")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
 
-	for msg := range client.AllMessages() {
-		fmt.Println(msg.String())
-
-		_, writeErr := fmt.Fprintln(file, msg.String())
+	select {
+	case res := <-client.AllMessages():
+		println(res.String())
+		_, writeErr := fmt.Fprintln(file, res.String())
 		if writeErr != nil {
 			log.Println(writeErr)
 		}
+	case err := <-client.Err():
+		log.Println(err)
 	}
 }

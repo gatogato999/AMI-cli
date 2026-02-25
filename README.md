@@ -1,15 +1,24 @@
 # AMI-cli
 an asterisk manager interface client with go
 
-```conf 
-# in /etc/asterisk/cdr_custom.conf 
-[mappings]
-Simple.csv => ${CSV_QUOTE(${CDR(src)})},${CSV_QUOTE(${CDR(dst)})},${CSV_QUOTE(${CDR(channel)})},${CSV_QUOTE(${CDR(duration)})},${CSV_QUOTE(${CDR(billsec)})}
-```
+
 ```conf 
 # in /etc/asterisk/cdr.conf 
 [general]
 enable=yes
+```
+
+```conf 
+# in /etc/asterisk/cdr_manager.conf 
+[general]
+enable=yes
+```
+
+```conf 
+# in /etc/asterisk/manager.d/go.conf 
+[general]
+secret = passpass
+read = cdr
 ```
 
 ## Note
@@ -23,3 +32,7 @@ enable=yes
  * Duration - the End time minus the Start time.
  * Billsec - the End time minus the Answer time. 
     (Whether or not you actually bill for this period of time is up to you)
+
+- to make AMI client to get CDRs :
+ * edit cdr_manager.conf
+ * add custom conf for the AMI inside manager.d folder
