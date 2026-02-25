@@ -33,14 +33,16 @@ func saveEventsToFile() {
 	}
 	defer file.Close()
 
-	select {
-	case res := <-client.AllMessages():
-		println(res.String())
-		_, writeErr := fmt.Fprintln(file, res.String())
-		if writeErr != nil {
-			log.Println(writeErr)
+	for {
+		select {
+		case res := <-client.AllMessages():
+			println(res.String())
+			_, writeErr := fmt.Fprintln(file, res.String())
+			if writeErr != nil {
+				log.Println(writeErr)
+			}
+		case err := <-client.Err():
+			log.Println(err)
 		}
-	case err := <-client.Err():
-		log.Println(err)
 	}
 }
